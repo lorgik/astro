@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pageTitle = "Обо мне";
+
+const identity = {
+  firstName: "Николай",
+  country: "Нидерланды",
+  occupation: "Технический автор",
+  hobbies: ["фотография", "дизайн", "тенис"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Оптимизация SEO"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "navy";
+---
+
+<Layout title={pageTitle}>
+	<main>
+		<h1>{pageTitle}</h1>
+		<p>Вот несколько фактов обо мне:</p>
+    <ul>
+      <li>Меня зовут {identity.firstName}.</li>
+      <li>Я живу в {identity.country} и работаю в качестве {identity.occupation}.</li>
+      {identity.hobbies.length >= 2 &&
+        <li>Два моих увлечения: {identity.hobbies[0]} и {identity.hobbies[1]}</li>
+      }
+    </ul>
+    <p>Мои навыки:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+    {happy && <p>Я рад изучать Astro!</p>}
+
+    {finished && <p>Я закончил этот урок!</p>}
+
+    {goal === 3 ? <p>Моя цель — закончить за 3 дня.</p> : <p>Моя цель — не 3 дня.</p>}
+	</main>
+</Layout>
+
+<style define:vars={{skillColor}}>
+	.skill {
+    font-size: 0.875rem;
+    color: var(--skillColor);
+  }
+</style>
